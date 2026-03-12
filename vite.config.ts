@@ -4,7 +4,7 @@ import path from "path";
 import { componentTagger } from "lovable-tagger";
 
 export default defineConfig(({ mode }) => ({
-  base: "/Finance-Flow/", // 👈 caminho do repositório no GitHub Pages
+  base: "https://github.com/matheuscorreiadev/Finance-Flow", // 👈 caminho do repositório no GitHub Pages
 
   server: {
     host: "::",
