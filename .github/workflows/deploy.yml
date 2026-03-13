@@ -1,6 +1,5 @@
 name: Deploy Vite + React + Tailwind to GitHub Pages
 
-# Roda toda vez que houver push na branch main
 on:
   push:
     branches: ["main"]
@@ -15,25 +14,20 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1️⃣ Pegar o código
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # 2️⃣ Configurar Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
 
-      # 3️⃣ Instalar dependências de forma limpa
       - name: Install dependencies
         run: npm ci
 
-      # 4️⃣ Build usando npx para evitar 'Permission denied'
       - name: Build project
         run: npx vite build
 
-      # 5️⃣ Fazer upload da pasta dist para deploy
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
@@ -42,16 +36,12 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
-
     environment:
       name: github-pages
-
     permissions:
       pages: write
       id-token: write
-
     steps:
-      # 6️⃣ Deploy para GitHub Pages
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4
